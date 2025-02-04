@@ -1,0 +1,18 @@
+
+name: Trigger Sync to IDP Repo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  trigger-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Sync in IDP Repo
+        run: |
+          curl -X POST -H "Accept: application/vnd.github+json" \
+          -H "Authorization: token ghs_pIrpgIxlbmsgdxavfjlU765zTWfeJ42VdMUB" \
+          --data '{"event_type": "sync-code"}' \
+          https://api.github.com/repos/alialh-cd-test-org/idp-repo/dispatches
